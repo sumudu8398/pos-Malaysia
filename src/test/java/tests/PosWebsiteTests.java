@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTestObject;
+import com.pos.pages.ConsignmentPage;
 import com.pos.pages.HomePage;
 import com.pos.pages.InsurancePage;
 import com.pos.pages.ParcelPage;
@@ -63,11 +64,14 @@ public class PosWebsiteTests extends BaseTestObject {
         parcelPage.clickCreateShipment();
 
         Thread.sleep(1000);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.pos.com.my/parcel");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://send.pos.com.my/home/e-connote?lg=en");
 
+        ConsignmentPage consignmentPage = new ConsignmentPage(driver);
+
+        Assert.assertEquals(consignmentPage.getSenderTitle(),"Sender Info");
+        Assert.assertEquals(consignmentPage.getReceiverTitle(),"Receiver Info");
+        Assert.assertEquals(consignmentPage.getSummaryTitle(),"Summary");
+        Assert.assertEquals(consignmentPage.getParcelTitle(),"Parcel Info");
     }
-
-
-
 
 }
