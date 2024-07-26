@@ -1,6 +1,9 @@
 package tests;
 
 import base.BaseTestObject;
+import com.pos.constants.Constants;
+import com.pos.constants.RelativeURLs;
+import com.pos.constants.Times;
 import com.pos.pages.ConsignmentPage;
 import com.pos.pages.HomePage;
 import com.pos.pages.InsurancePage;
@@ -17,7 +20,7 @@ public class PosWebsiteTests extends BaseTestObject {
     @Test
     public void verifyThatPosWebsiteOffersToBuyInsurance() throws InterruptedException {
 
-        driver.get("https://www.pos.com.my/");
+        driver.get(RelativeURLs.HOME_PAGE);
 
         HomePage homePage = new HomePage(driver);
 
@@ -34,14 +37,14 @@ public class PosWebsiteTests extends BaseTestObject {
 
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(Times.ONE_SECOND);
 
-        Assert.assertEquals(driver.getCurrentUrl(), "https://insurance.pos.com.my/");
+        Assert.assertEquals(driver.getCurrentUrl(), RelativeURLs.INSURANCE_PAGE);
 
         InsurancePage insurancePage = new InsurancePage(driver);
 
-        Assert.assertTrue(insurancePage.isVisibleWidget("car"),"Car Widget is not enable");
-        Assert.assertTrue(insurancePage.isVisibleWidget("motorCycle"), "MotorCycle Widget is not enable");
+        Assert.assertTrue(insurancePage.isVisibleWidget(Constants.CAR),"Car Widget is not enable");
+        Assert.assertTrue(insurancePage.isVisibleWidget(Constants.MOTORCYCLE), "MotorCycle Widget is not enable");
 
         Assert.assertEquals(insurancePage.clickWidget(),"Ok, let's get to know you");
 
@@ -51,20 +54,20 @@ public class PosWebsiteTests extends BaseTestObject {
     @Test
     public void verifyThatPosWebsiteHasLinksToCreateEConsignmentNote() throws InterruptedException {
 
-        driver.get("https://www.pos.com.my/");
+        driver.get(RelativeURLs.HOME_PAGE);
 
         HomePage homePage = new HomePage(driver);
         homePage.hoverMouse();
         homePage.clickParcel();
 
-        Thread.sleep(1000);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.pos.com.my/parcel");
+        Thread.sleep(Times.ONE_SECOND);
+        Assert.assertEquals(driver.getCurrentUrl(), RelativeURLs.PARCEL_PAGE);
 
         ParcelPage parcelPage = new ParcelPage(driver);
         parcelPage.clickCreateShipment();
 
-        Thread.sleep(1000);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://send.pos.com.my/home/e-connote?lg=en");
+        Thread.sleep(Times.ONE_SECOND);
+        Assert.assertEquals(driver.getCurrentUrl(), RelativeURLs.CONSIGNMENT_PAGE);
 
         ConsignmentPage consignmentPage = new ConsignmentPage(driver);
 
