@@ -5,9 +5,9 @@ This repository contains automated test cases for the Pos Malaysia website using
 
 ## Prerequisites
 
-- Java 22
+- Java 18 or Higher
 - Maven
-- Chrome Browser
+- Chrome Browser / Firefox Browser
 
 ## Setup
 
